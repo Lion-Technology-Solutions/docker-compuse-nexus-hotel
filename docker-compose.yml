@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./images:/usr/share/nginx/html/images
+    networks:
+      - hotel-network
+    restart: unless-stopped
+
+  # Booking Service
+  booking-service:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./booking-service:/usr/share/nginx/html
+      - ./images:/usr/share/nginx/html/images
+    networks:
+      - hotel-network
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  # Admin Panel
+  admin-panel:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./admin-panel:/usr/share/nginx/html
+      - ./images:/usr/share/nginx/html/images
+    networks:
+      - hotel-network
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  # Database Service
+  db:
+    image: mysql:8.0
+    container_name: nexus-hotel-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: hotel_db
+      MYSQL_USER: hotel_user
+      MYSQL_PASSWORD: hotelpass
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - hotel-network
+    ports:
+      - "3306:3306"
+    restart: always
+
+# Define volumes and networks
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  hotel-network:
+    driver: bridge
