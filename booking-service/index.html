@@ -4,25 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Hotel - Booking</title>
+    <link rel="stylesheet" href="../frontend/style.css">
 </head>
 <body>
-    <h1>Make a Reservation</h1>
-    <form>
-        <label for="checkin">Check-in Date:</label>
-        <input type="date" id="checkin" name="checkin"><br>
-        
-        <label for="checkout">Check-out Date:</label>
-        <input type="date" id="checkout" name="checkout"><br>
-        
-        <label for="room-type">Room Type:</label>
-        <select id="room-type" name="room-type">
-            <option value="standard">Standard</option>
-            <option value="deluxe">Deluxe</option>
-            <option value="suite">Suite</option>
-        </select><br>
-        
-        <button type="submit">Book Room</button>
-    </form>
-    <p><a href="http://localhost">Back to Home</a></p>
+    <header>
+        <img src="images/logo.png" alt="Nexus Hotel Logo" class="logo">
+        <h1>Nexus Hotel Booking</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="http://localhost">Home</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="http://localhost:8081">Admin</a></li>
+        </ul>
+    </nav>
+    
+    <main class="form-container">
+        <h2>Make a Reservation</h2>
+        <form>
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="checkin">Check-in Date:</label>
+                <input type="date" id="checkin" name="checkin" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="checkout">Check-out Date:</label>
+                <input type="date" id="checkout" name="checkout" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="room-type">Room Type:</label>
+                <select id="room-type" name="room-type" required>
+                    <option value="">Select Room Type</option>
+                    <option value="standard">Standard ($99.99/night)</option>
+                    <option value="deluxe">Deluxe ($149.99/night)</option>
+                    <option value="suite">Suite ($249.99/night)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="guests">Number of Guests:</label>
+                <select id="guests" name="guests" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="specialRequests">Special Requests:</label>
+                <textarea id="specialRequests" name="specialRequests" rows="3"></textarea>
+            </div>
+            
+            <button type="submit" class="button">Book Now</button>
+        </form>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Nexus Hotel. All rights reserved.</p>
+    </footer>
 </body>
 </html>

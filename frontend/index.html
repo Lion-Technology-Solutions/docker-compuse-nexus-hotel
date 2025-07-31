@@ -11,15 +11,114 @@
         <img src="images/logo.png" alt="Nexus Hotel Logo" class="logo">
         <h1>Welcome to Nexus Hotel</h1>
     </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="http://localhost:8080">Book Now</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="http://localhost:8081">Admin</a></li>
+        </ul>
+    </nav>
+    
     <main>
         <section class="hero">
-            <img src="images/hotel-exterior.jpg" alt="Nexus Hotel Exterior">
-            <p>Experience luxury like never before</p>
-            <a href="http://localhost:8080" class="button">Book Now</a>
+            <img src="images/hotel-exterior.jpg" alt="Nexus Hotel Exterior" style="width:100%; max-height:400px; object-fit:cover;">
+            <div style="text-align:center; padding:20px;">
+                <p style="font-size:1.2em;">Experience luxury like never before</p>
+                <a href="http://localhost:8080" class="button">Book Now</a>
+            </div>
+        </section>
+
+        <section id="register" class="form-container">
+            <h2>Guest Registration</h2>
+            <form id="registrationForm" onsubmit="return showConfirmation(event)">
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="idType">ID Type:</label>
+                    <select id="idType" name="idType" required>
+                        <option value="">Select ID Type</option>
+                        <option value="passport">Passport</option>
+                        <option value="driver-license">Driver's License</option>
+                        <option value="national-id">National ID</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="idNumber">ID Number:</label>
+                    <input type="text" id="idNumber" name="idNumber" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="checkin">Check-in Date:</label>
+                    <input type="date" id="checkin" name="checkin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="checkout">Check-out Date:</label>
+                    <input type="date" id="checkout" name="checkout" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomType">Room Type:</label>
+                    <select id="roomType" name="roomType" required>
+                        <option value="">Select Room Type</option>
+                        <option value="standard">Standard ($99.99/night)</option>
+                        <option value="deluxe">Deluxe ($149.99/night)</option>
+                        <option value="suite">Suite ($249.99/night)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="terms" required> I agree to the terms and conditions
+                    </label>
+                </div>
+                
+                <button type="submit" class="button">Complete Registration</button>
+            </form>
+            
+            <div id="confirmationMessage" class="confirmation" style="display:none;">
+                <div class="confirmation-icon">✓</div>
+                <h2>Registration Successful!</h2>
+                <p>Thank you for registering with Nexus Hotel.</p>
+                <p>A confirmation has been sent to your email.</p>
+                <p>We look forward to serving you during your stay.</p>
+                <a href="/" class="button">Return to Home</a>
+            </div>
         </section>
     </main>
+    
     <footer>
         <p>&copy; 2023 Nexus Hotel. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showConfirmation(event) {
+            event.preventDefault();
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('confirmationMessage').style.display = 'block';
+            return false;
+        }
+    </script>
 </body>
 </html>
